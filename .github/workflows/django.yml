@@ -44,7 +44,7 @@ jobs:
           run: |
             docker login -u ${{ github.actor }} -p ${{secrets.DOCKER_PASSWORD}}
         - name: Build the Docker image for main branch
-          run: docker build .. --file Dockerfile --tag ${{ github.actor }}/summ:latest
+          run: docker build . --tag ${{ github.actor }}/summ:latest
        
       
         - name: Docker Push for main branch
