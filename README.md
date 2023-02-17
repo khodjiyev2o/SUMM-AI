@@ -61,6 +61,8 @@ docker run --rm -it --mount src="$(pwd)",target=/usr/src/app,type=bind -dp 8000:
 * http://localhost:80
 * http://0.0.0.0:80
 
+```http://0.0.0.0:8000/docs/``` - docs of the project
+
 Example file with environment variables - .env.example
 
 #### Settings file
@@ -77,14 +79,17 @@ Routes that begin from ``*`` require authorization
 
 * ``email`` - You must enter valid email. 
 
+``POST /api/token`` - getting Token. Request body:
+* ``email`` - must contain only letters
+* ``password`` - must contain only letters
+
+* ``email`` - You must enter valid email. 
 
 Response codes:
 
-``201`` - Successfully created
+``200`` - Success
 
-``400`` - Validation Error
-
-``403`` - Forbidden, if User already exists 
+``400`` - Validation Error, if wrong credentials are provided
 
 
 ``GET /translation-objects/`` - getting list of  translation-objects 
@@ -116,8 +121,8 @@ Responses codes:
 
 Responses codes:
 
-``200`` - Success
+``204`` - Success
 
 ``404`` - Not Found
 
-**All these endpoints should be requested with the email and password in the Authentication headers 
+**All these endpoints should be requested with the token in the Authentication headers 

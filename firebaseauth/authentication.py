@@ -9,15 +9,16 @@ auth = firebase.auth()
 
 class FirebaseAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
-        email = request.headers.get('email')
-        password = request.headers.get('password')
-        if not email or not password:
-            raise NoAuthToken("No authentication credentials provided ")
-        try:
-            user = auth.sign_in_with_email_and_password(email,password)
-        except Exception:
-            raise InvalidCredentials(f"invalid crediantials ")
-        return user, None
+        if request.method == "POST":
+            token = request.headers.get('token')
+            if not token :
+                raise NoAuthToken("No authentication credentials provided ")
+            try:
+                user_info = auth.get_account_info(token)
+                user =  user_info['users'][0]['email'] 
+            except Exception:
+                raise InvalidCredentials(f"invalid crediantials ")
+            return user, None
 
     
      

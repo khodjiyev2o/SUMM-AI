@@ -14,4 +14,12 @@ def fireBaseSignUp(email: str, password: str) -> Response:
       return Response({'message': 'User already exists'},status=403)
    
 
-
+def fireBaseToken(email: str, password: str) -> Response:
+   try:
+        user = auth.sign_in_with_email_and_password(email,password)
+        return Response({
+         'message': 'success',
+         'token': user['idToken'],
+        })
+   except Exception:
+      return Response({'message': f'{Exception}'},status=400)

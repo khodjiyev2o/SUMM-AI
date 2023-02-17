@@ -26,6 +26,7 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [ 
     'rest_framework',
     'corsheaders', 
+    'drf_yasg',
 ]
 LOCAL_APPS = [
     'translation',
@@ -110,9 +111,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'firebaseauth.authentication.FirebaseAuthentication',
-    ),
+    ],
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
