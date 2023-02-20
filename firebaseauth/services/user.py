@@ -9,9 +9,9 @@ def fireBaseSignUp(email: str, password: str) -> Response:
    try:
         # creating a user with the given email and password
         user = auth.create_user_with_email_and_password(email=email, password=password)
-        return Response({'message': f'User {email} successfull created '})
+        return Response({'message': f'User successfully created !'})
    except:
-      return Response({'message': 'User already exists'},status=403)
+      return Response({'message': 'User already exists'})
    
 
 def fireBaseToken(email: str, password: str) -> Response:
