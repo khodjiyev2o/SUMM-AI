@@ -9,7 +9,6 @@ auth = firebase.auth()
 
 class FirebaseAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
-        if request.method == "POST":
             token = request.headers.get('token')
             if not token :
                 raise NoAuthToken("No authentication credentials provided ")
