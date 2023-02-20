@@ -10,7 +10,7 @@ auth = firebase.auth()
 class FirebaseAuthentication(authentication.BaseAuthentication):
     def authenticate(self, request):
             token = request.headers.get('token')
-            if not token :
+            if not token:
                 raise NoAuthToken("No authentication credentials provided ")
             try:
                 user_info = auth.get_account_info(token)

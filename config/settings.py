@@ -67,7 +67,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -110,10 +109,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'firebaseauth.authentication.FirebaseAuthentication',
-    ],
+
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'USE_SESSION_AUTH': False, 
+        'api_key': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'token'
+        }
+    },
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
