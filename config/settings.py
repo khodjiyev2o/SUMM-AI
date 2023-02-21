@@ -109,7 +109,8 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
-CORS_ALLOW_ALL_ORIGINS=True
+
+CORS_ORIGIN_ALLOW_ALL=True
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
@@ -117,7 +118,7 @@ SWAGGER_SETTINGS = {
         'api_key': {
             'type': 'apiKey',
             'in': 'header',
-            'name': 'token'
+            'name': 'Authorization'
         }
     },
 }
