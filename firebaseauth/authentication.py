@@ -7,10 +7,10 @@ firebase = pyrebase.initialize_app(settings.CONFIG)
 auth = firebase.auth()
 
 class FirebaseAuthentication(authentication.BaseAuthentication):
-    authentication_header_prefix = 'Token'
+    authentication_header_prefix = 'Bearer'
     def authenticate(self, request):
         auth_header = authentication.get_authorization_header(request).split()
-        if not auth_header or auth_header[0].lower() != b'token':
+        if not auth_header or auth_header[0].lower() != b'bearer':
             raise exceptions.AuthenticationFailed('Invalid token header. No credential provided.')
         if len(auth_header) == 1:
             raise exceptions.AuthenticationFailed('Invalid token header. No credential provided.')
